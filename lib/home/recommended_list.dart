@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie/addToWatchlistButton.dart';
+import 'package:movie/firebase_Utils/firebase_utis.dart';
+import 'package:movie/firebase_Utils/movieDm.dart';
 import '../api/api_constants.dart';
 import '../details/popular_details.dart';
 import '../model/MoviesDetails.dart';
 import '../my_theme.dart';
+import '../search/search_tab.dart';
 import 'cupit/movies_states.dart';
 import 'cupit/movies_view_model.dart';
 
@@ -26,8 +29,7 @@ class _RecommendedListState extends State<RecommendedList> {
 
   @override
   Widget build(BuildContext context) {
-
-     return BlocBuilder<MoviesViewModel,MoviesStates>(
+    return BlocBuilder<MoviesViewModel, MoviesStates>(
       bloc: viewModel,
       builder: (context, state) {
         if (state is MoviesSuccessState) {
@@ -36,12 +38,11 @@ class _RecommendedListState extends State<RecommendedList> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                      "Recommended",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          color: MyTheme.whiteColor
-                      )
-                  ),
+                  Text("Recommended",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(color: MyTheme.whiteColor)),
                 ],
               ),
               Container(
@@ -64,16 +65,37 @@ class _RecommendedListState extends State<RecommendedList> {
                               Stack(
                                 children: [
                                   InkWell(
-                                    onTap:(){Navigator.of(context).pushNamed(PopularDetailsScreen.routeName,
-                                        arguments:state.moviesList[index]
-                                    );},
-                                    child: Image.network("${APIConstants.imageUrl}${state.moviesList[index].posterPath}" ,
+                                    onTap: () {
+                                      Navigator.of(context).pushNamed(
+                                          PopularDetailsScreen.routeName,
+                                          arguments: state.moviesList[index]);
+                                    },
+                                    child: Image.network(
+                                      "${APIConstants.imageUrl}${state.moviesList[index].posterPath}",
                                       fit: BoxFit.fill,
                                     ),
                                   ),
-                                  CustomButtonAdd()
+
                                   // Image.asset('assets/images/add_icon.png'),
-                                  // Icon(Icons.add,color: MyTheme.whiteColor,),
+                                  InkWell(
+                                    onTap: () {
+                                      MovieDM movieDM = MovieDM(
+                                          title: state.moviesList[index].title,
+                                          posterPath: state
+                                              .moviesList[index].posterPath,
+                                          voteAverage: state
+                                              .moviesList[index].voteAverage,
+                                          releaseDate: state
+                                              .moviesList[index].releaseDate,
+                                          overview: state.moviesList[index].overview,
+                                          id: state.moviesList[index].id,
+                                          isWatchList: true);
+                                      FirebaseUtils.addMovieToFirebase(movieDM);
+
+                                      print('movie Added successfully');
+                                    },
+                                    child: CustomButtonAdd(),
+                                  ), // Icon(Icons.add,color: MyTheme.whiteColor,),
                                 ],
                               ),
                               Row(
@@ -86,21 +108,22 @@ class _RecommendedListState extends State<RecommendedList> {
                                   SizedBox(
                                     width: 5.h,
                                   ),
-                                  Text("${double.parse(state.moviesList[index].voteAverage!.toString())}",style: TextStyle(
-                                    color: MyTheme.whiteColor
-                                  ),),
+                                  Text(
+                                    "${double.parse(state.moviesList[index].voteAverage!.toString())}",
+                                    style: TextStyle(color: MyTheme.whiteColor),
+                                  ),
                                 ],
                               ),
-                              Text(state.moviesList[index].title! ,
+                              Text(
+                                state.moviesList[index].title!,
                                 style: TextStyle(
-                                  color: MyTheme.whiteColor,
-                                fontSize: 16
-                              ),
+                                    color: MyTheme.whiteColor, fontSize: 16),
                                 maxLines: 1,
                               ),
-                              Text(state.moviesList[index].releaseDate!,style: TextStyle(
-                                  color: MyTheme.whiteColor
-                              ),),
+                              Text(
+                                state.moviesList[index].releaseDate!,
+                                style: TextStyle(color: MyTheme.whiteColor),
+                              ),
                             ],
                           ),
                         ),
@@ -114,7 +137,9 @@ class _RecommendedListState extends State<RecommendedList> {
             child: Column(
               children: [
                 Text(
-                  state.errorMessage,///!
+                  state.errorMessage,
+
+                  ///!
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 ElevatedButton(
@@ -138,9 +163,7 @@ class _RecommendedListState extends State<RecommendedList> {
         }
       },
     );
-
-
-
-
   }
+
+  addMovie() {}
 }

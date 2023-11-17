@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/api/api_constants.dart';
 
+import '../addToWatchlistButton.dart';
 import '../details/popular_details.dart';
+import '../firebase_Utils/firebase_utis.dart';
+import '../firebase_Utils/movieDm.dart';
 import '../my_theme.dart';
 import 'cupit/movies_states.dart';
 import 'cupit/movies_view_model.dart';
@@ -24,7 +27,7 @@ class _UpComingListState extends State<UpComingList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MoviesViewModel,MoviesStates>(
+    return BlocBuilder<MoviesViewModel, MoviesStates>(
       bloc: viewModel,
       builder: (context, state) {
         if (state is MoviesSuccessState) {
@@ -33,12 +36,11 @@ class _UpComingListState extends State<UpComingList> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                      "New Released",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          color: MyTheme.whiteColor
-                      )
-                  ),
+                  Text("New Released",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(color: MyTheme.whiteColor)),
                 ],
               ),
               Container(
@@ -59,16 +61,37 @@ class _UpComingListState extends State<UpComingList> {
                           child: Stack(
                             children: [
                               InkWell(
-                                onTap:(){Navigator.of(context).pushNamed(PopularDetailsScreen.routeName,
-                        arguments:state.moviesList[index]
-                        );},
-                                child: Image.network("${APIConstants.imageUrl}${state.moviesList[index].posterPath}" ,
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                      PopularDetailsScreen.routeName,
+                                      arguments: state.moviesList[index]);
+                                },
+                                child: Image.network(
+                                  "${APIConstants.imageUrl}${state.moviesList[index].posterPath}",
                                   fit: BoxFit.fill,
                                   height: double.infinity,
                                 ),
                               ),
-                              Image.asset('assets/images/add_icon.png'),
-                              Icon(Icons.add,color: MyTheme.whiteColor,),
+                              InkWell(
+                                onTap: () {
+                                  MovieDM movieDM = MovieDM(
+                                      title: state.moviesList[index].title,
+                                      posterPath:
+                                          state.moviesList[index].posterPath,
+                                      voteAverage:
+                                          state.moviesList[index].voteAverage,
+                                      releaseDate:
+                                          state.moviesList[index].releaseDate,
+                                      overview:
+                                          state.moviesList[index].overview,
+                                      id: state.moviesList[index].id,
+                                      isWatchList: true);
+                                  FirebaseUtils.addMovieToFirebase(movieDM);
+
+                                  print('movie Added successfully');
+                                },
+                                child: CustomButtonAdd(),
+                              ),
                             ],
                           ),
                         ),
@@ -106,9 +129,5 @@ class _UpComingListState extends State<UpComingList> {
         }
       },
     );
-
-
-
-
   }
 }

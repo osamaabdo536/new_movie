@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../browser/browser_tab.dart';
 import '../my_theme.dart';
 import '../search/search_tab.dart';
 import '../watch_list/watch_list.dart';
+import 'browse/category_click.dart';
+import 'browse/category_fragment.dart';
 import 'home/home_tab.dart';
 class HomeScreen extends StatefulWidget {
   static const String routeName = "home_screen";
@@ -56,6 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
   List<Widget> tabs = [
-    HomeTab(),SearchTab(),BrowseTab(),WatchList()
+    HomeTab(),SearchTab(),CategoryFragment(onCategoryClick: onCategoryClick),WatchList()
   ];
 }

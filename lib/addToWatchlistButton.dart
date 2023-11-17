@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie/search/search_tab.dart';
 
 import 'my_theme.dart';
 
@@ -6,21 +7,16 @@ class CustomButtonAdd extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-return InkWell(
-  onTap: (){
+return Stack(
 
-  },
-  child:   Stack(
+  children: [
 
-    children: [
+    Image.asset('assets/images/add_icon.png'),
 
-      Image.asset('assets/images/add_icon.png'),
+    Icon(Icons.add,color: MyTheme.whiteColor,),
 
-      Icon(Icons.add,color: MyTheme.whiteColor,),
+  ],
 
-    ],
-
-  ),
 );
   }
 

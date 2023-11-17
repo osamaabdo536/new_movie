@@ -15,8 +15,12 @@ class FirebaseUtils {
   static Future<void> addMovieToFirebase(MovieDM movie) {
     var movieCollection=getMovieCollection();
     DocumentReference<MovieDM> movieDocRef=movieCollection.doc();
- movie.Iid=movieDocRef.id;
+ // movie.id=movieDocRef.id;
  return movieDocRef.set(movie);
+  }
+
+  static Future<void> deleteMovieFromFirebase(MovieDM movieDM) {
+    return getMovieCollection().doc(movieDM.id.toString()).delete();
   }
 
 }

@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie/details/popular_details.dart';
 import 'package:movie/my_theme.dart';
+import '../addToWatchlistButton.dart';
 import '../api/api_constants.dart';
+import '../firebase_Utils/firebase_utis.dart';
+import '../firebase_Utils/movieDm.dart';
 import '../model/MoviesDetails.dart';
 import 'cupit/movies_states.dart';
 import 'cupit/movies_view_model.dart';
@@ -30,6 +33,7 @@ class _PopularMoviesCarouselSliderState extends State<PopularMoviesCarouselSlide
   Widget build(BuildContext context) {
     return Stack(
       children: [
+
         BlocBuilder<MoviesViewModel, MoviesStates>(
           bloc: viewModel,
           builder: (context, state) {
@@ -71,8 +75,22 @@ class _PopularMoviesCarouselSliderState extends State<PopularMoviesCarouselSlide
                                       fit: BoxFit.fill,
                                       height: double.infinity,
                                     ),
-                                    Image.asset('assets/images/add_icon.png'),
-                                    Icon(Icons.add,color: MyTheme.whiteColor,),
+                                    InkWell(
+                                      onTap: () {
+                                        MovieDM movieDM = MovieDM(
+                                            title: state.moviesList[index].title,
+                                            posterPath: state.moviesList[index].posterPath,
+                                            voteAverage: state.moviesList[index].voteAverage,
+                                            releaseDate: state.moviesList[index].releaseDate,
+                                            overview: state.moviesList[index].overview,
+                                            id: state.moviesList[index].id,
+                                        isWatchList: true);
+                                        FirebaseUtils.addMovieToFirebase(movieDM);
+
+                                        print('movie Added successfully');
+                                      },
+                                      child: CustomButtonAdd(),
+                                    ),
                                   ],
                                 ),
                               ),

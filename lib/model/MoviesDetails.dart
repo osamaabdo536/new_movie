@@ -48,18 +48,18 @@ class MoviesDetails {
   }
   bool? adult;
   String? backdropPath;
-  List<int>? genreIds;
-  int? id;
+  List<dynamic>? genreIds;
+  dynamic? id;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
-  double? popularity;
+  dynamic? popularity;
   String? posterPath;
   String? releaseDate;
   String? title;
   bool? video;
-  double? voteAverage;
-  int? voteCount;
+  dynamic? voteAverage;
+  dynamic? voteCount;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
