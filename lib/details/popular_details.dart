@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,8 +8,6 @@ import 'package:movie/details/cubit/popular_details_view_model.dart';
 import 'package:movie/my_theme.dart';
 import 'package:readmore/readmore.dart';
 import '../api/api_constants.dart';
-import '../firebase_Utils/firebase_utis.dart';
-import '../firebase_Utils/movieDm.dart';
 import '../model/MoviesDetails.dart';
 
 class PopularDetailsScreen extends StatefulWidget {
@@ -73,7 +72,6 @@ class _PopularDetailsScreenState extends State<PopularDetailsScreen> {
               padding: const EdgeInsets.only(left: 8),
               child: Column(
                 children: [
-
                   Row(
                     children: [
                       Text(
@@ -102,25 +100,11 @@ class _PopularDetailsScreenState extends State<PopularDetailsScreen> {
                     child: Row(
                       children: [
                         Stack(children: [
-                          Image.network("${APIConstants.imageUrl}${args.posterPath}"),
-                          InkWell(
-                            onTap: () {
-                              MovieDM movieDM = MovieDM(
-                                  title: args.title,
-                                  posterPath: args.posterPath,
-                                  voteAverage: args.voteAverage,
-                                  releaseDate: args.releaseDate,
-                                  overview: args.overview,
-                                  id: args.id,
-                                  isWatchList: true);
-                              FirebaseUtils.addMovieToFirebase(movieDM);
-
-                              print('movie Added successfully');
-                            },
-                            child: CustomButtonAdd(),
-                          ),
+                          Hero(
+                              tag: 'img-${args.id}',
+                              child: Image.network(
+                                  "${APIConstants.imageUrl}${args.posterPath}")),
                         ]),
-
                         Expanded(
                           child: SingleChildScrollView(
                             child: Padding(
@@ -140,22 +124,23 @@ class _PopularDetailsScreenState extends State<PopularDetailsScreen> {
                                             .textTheme
                                             .titleSmall
                                             ?.copyWith(
-                                                color: MyTheme.yellowColor, fontSize: 14),
+                                                color: MyTheme.yellowColor,
+                                                fontSize: 14),
                                       ),
                                     ],
                                   ),
-
                                   ReadMoreText(
-                                    args.overview??'yfuj',
+                                    args.overview ?? 'yfuj',
                                     trimMode: TrimMode.Line,
                                     trimCollapsedText: 'Show more',
                                     trimExpandedText: 'Show less',
                                     trimLines: 10,
-
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleSmall
-                                        ?.copyWith(color: MyTheme.whiteColor, fontSize: 14),
+                                        ?.copyWith(
+                                            color: MyTheme.whiteColor,
+                                            fontSize: 14),
                                   ),
                                 ],
                               ),
@@ -168,7 +153,6 @@ class _PopularDetailsScreenState extends State<PopularDetailsScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-
                 ],
               ),
             ),
@@ -210,7 +194,7 @@ class _PopularDetailsScreenState extends State<PopularDetailsScreen> {
                                   width: 120,
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.stretch,
+                                        CrossAxisAlignment.stretch,
                                     children: [
                                       Stack(
                                         children: [
@@ -220,33 +204,15 @@ class _PopularDetailsScreenState extends State<PopularDetailsScreen> {
                                                   PopularDetailsScreen
                                                       .routeName,
                                                   arguments:
-                                                  state.moviesList[index]);
+                                                      state.moviesList[index]);
                                             },
-                                            child: Image.network(
-                                              "${APIConstants.imageUrl}${state.moviesList[index].posterPath}",
-                                              fit: BoxFit.fill,
+                                            child: Hero(
+                                              tag: 'img-${state.moviesList[index].id}',
+                                              child: Image.network(
+                                                "${APIConstants.imageUrl}${state.moviesList[index].posterPath}",
+                                                fit: BoxFit.fill,
+                                              ),
                                             ),
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              MovieDM movieDM = MovieDM(
-                                                  title: state
-                                                      .moviesList[index].title,
-                                                  posterPath: state
-                                                      .moviesList[index]
-                                                      .posterPath,
-                                                  voteAverage: state
-                                                      .moviesList[index]
-                                                      .voteAverage,
-                                                  releaseDate: state
-                                                      .moviesList[index]
-                                                      .releaseDate);
-                                              FirebaseUtils.addMovieToFirebase(
-                                                  movieDM);
-
-                                              print('movie Added successfully');
-                                            },
-                                            child: CustomButtonAdd(),
                                           ),
                                         ],
                                       ),

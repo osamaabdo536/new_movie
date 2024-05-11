@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../api/api_constants.dart';
 import '../api/api_manager.dart';
 import '../details/popular_details.dart';
@@ -11,9 +10,7 @@ import '../my_theme.dart';
 class MoviesSearchDelegate extends SearchDelegate {
   // MoviesViewModel viewModel = MoviesViewModel();
   @override
-  List<Widget>? buildActions(
-      BuildContext context,
-      ) {
+  List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
         icon: const Icon(Icons.search, size: 40, color: Color(0xFFFFB224)),

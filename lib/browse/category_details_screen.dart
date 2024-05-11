@@ -19,7 +19,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   Widget build(BuildContext context) {
     var category = ModalRoute.of(context)?.settings.arguments as CategoryDM;
     return Scaffold(
-      backgroundColor: MyTheme.gryColor,
+      backgroundColor: MyTheme.blackColor,
       appBar: AppBar(
         backgroundColor: MyTheme.blackColor,
         centerTitle: true,

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/api/api_constants.dart';
-
-import '../addToWatchlistButton.dart';
 import '../details/popular_details.dart';
-import '../firebase_Utils/firebase_utis.dart';
-import '../firebase_Utils/movieDm.dart';
 import '../my_theme.dart';
 import 'cupit/movies_states.dart';
 import 'cupit/movies_view_model.dart';
@@ -66,31 +62,14 @@ class _UpComingListState extends State<UpComingList> {
                                       PopularDetailsScreen.routeName,
                                       arguments: state.moviesList[index]);
                                 },
-                                child: Image.network(
-                                  "${APIConstants.imageUrl}${state.moviesList[index].posterPath}",
-                                  fit: BoxFit.fill,
-                                  height: double.infinity,
+                                child: Hero(
+                                  tag: 'img-${state.moviesList[index].id}',
+                                  child: Image.network(
+                                    "${APIConstants.imageUrl}${state.moviesList[index].posterPath}",
+                                    fit: BoxFit.fill,
+                                    height: double.infinity,
+                                  ),
                                 ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  MovieDM movieDM = MovieDM(
-                                      title: state.moviesList[index].title,
-                                      posterPath:
-                                          state.moviesList[index].posterPath,
-                                      voteAverage:
-                                          state.moviesList[index].voteAverage,
-                                      releaseDate:
-                                          state.moviesList[index].releaseDate,
-                                      overview:
-                                          state.moviesList[index].overview,
-                                      id: state.moviesList[index].id,
-                                      isWatchList: true);
-                                  FirebaseUtils.addMovieToFirebase(movieDM);
-
-                                  print('movie Added successfully');
-                                },
-                                child: CustomButtonAdd(),
                               ),
                             ],
                           ),

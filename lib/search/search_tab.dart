@@ -50,8 +50,7 @@ class SearchTab extends StatelessWidget {
                           ),
                           ),
                         ),
-                      ]
-
+                      ],
                   )
               )
             ])

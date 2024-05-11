@@ -4,10 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie/details/popular_details.dart';
 import 'package:movie/my_theme.dart';
-import '../addToWatchlistButton.dart';
 import '../api/api_constants.dart';
-import '../firebase_Utils/firebase_utis.dart';
-import '../firebase_Utils/movieDm.dart';
 import '../model/MoviesDetails.dart';
 import 'cupit/movies_states.dart';
 import 'cupit/movies_view_model.dart';
@@ -71,25 +68,12 @@ class _PopularMoviesCarouselSliderState extends State<PopularMoviesCarouselSlide
                                 width: 250,
                                 child: Stack(
                                   children: [
-                                    Image.network("${APIConstants.imageUrl}${state.moviesList[index].posterPath}" ,
-                                      fit: BoxFit.fill,
-                                      height: double.infinity,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        MovieDM movieDM = MovieDM(
-                                            title: state.moviesList[index].title,
-                                            posterPath: state.moviesList[index].posterPath,
-                                            voteAverage: state.moviesList[index].voteAverage,
-                                            releaseDate: state.moviesList[index].releaseDate,
-                                            overview: state.moviesList[index].overview,
-                                            id: state.moviesList[index].id,
-                                        isWatchList: true);
-                                        FirebaseUtils.addMovieToFirebase(movieDM);
-
-                                        print('movie Added successfully');
-                                      },
-                                      child: CustomButtonAdd(),
+                                    Hero(
+                                      tag: 'img-${state.moviesList[index].id}',
+                                      child: Image.network("${APIConstants.imageUrl}${state.moviesList[index].posterPath}" ,
+                                        fit: BoxFit.fill,
+                                        height: double.infinity,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -147,7 +131,3 @@ class _PopularMoviesCarouselSliderState extends State<PopularMoviesCarouselSlide
     );
   }
 }
-
-///Results popular;
-///int index ;
-///PopularMoviesCarouselSlider({required this.popular,required this.index});
