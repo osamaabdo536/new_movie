@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie/ongoingBoardScreen/ongoing_board_screen.dart';
+import 'package:movie/onBoardingScreen/ongoing_board_screen.dart';
 import 'package:movie/search/search_tab.dart';
 import 'package:movie/splash_screen.dart';
 import 'browse/category_details_screen.dart';
@@ -27,7 +27,7 @@ void main() async {
             CategoryDetails.routName: (context) => CategoryDetails(),
             PopularDetailsScreen.routeName: (context) =>
                 PopularDetailsScreen(),
-            OnGoingBoardScreen.routeName: (context) => OnGoingBoardScreen(),
+            OnBoardingScreen.routeName: (context) => OnBoardingScreen(),
           },
           debugShowCheckedModeBanner: false,
           theme: MyTheme.darkTheme,
