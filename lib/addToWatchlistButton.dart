@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie/search/search_tab.dart';
-
 import 'my_theme.dart';
 
 class CustomButtonAdd extends StatelessWidget{

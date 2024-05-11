@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie/search/search_delegate.dart';
-
+import 'package:new_movie/search/search_delegate.dart';
 import '../my_theme.dart';
 
 

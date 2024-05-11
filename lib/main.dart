@@ -1,17 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie/onBoardingScreen/ongoing_board_screen.dart';
-import 'package:movie/search/search_tab.dart';
-import 'package:movie/splash_screen.dart';
+import 'package:new_movie/search/search_tab.dart';
+import 'package:new_movie/splash_screen.dart';
 import 'browse/category_details_screen.dart';
 import 'details/popular_details.dart';
 import 'home_screen.dart';
 import 'my_theme.dart';
+import 'onBoardingScreen/ongoing_board_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
 
   runApp(ScreenUtilInit(
       designSize: const Size(412, 870),

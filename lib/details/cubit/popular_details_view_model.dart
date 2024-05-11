@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/api/api_manager.dart';
-import 'package:movie/details/cubit/popular_details_states.dart';
+import 'package:new_movie/details/cubit/popular_details_states.dart';
+
+import '../../api/api_manager.dart';
 
 class PopularDetailsViewModel extends Cubit<PopularDetailsStates>{
   PopularDetailsViewModel():super(PopularDetailsLoadingState());

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie/home/popular_movie_carousel_slider.dart';
-import 'package:movie/home/recommended_list.dart';
-import 'package:movie/home/up_coming_list.dart';
+import 'package:new_movie/home/popular_movie_carousel_slider.dart';
+import 'package:new_movie/home/recommended_list.dart';
+import 'package:new_movie/home/up_coming_list.dart';
 import '../my_theme.dart';
 
 class HomeTab extends StatefulWidget {

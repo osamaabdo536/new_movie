@@ -2,10 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie/details/popular_details.dart';
-import 'package:movie/my_theme.dart';
 import '../api/api_constants.dart';
+import '../details/popular_details.dart';
 import '../model/MoviesDetails.dart';
+import '../my_theme.dart';
 import 'cupit/movies_states.dart';
 import 'cupit/movies_view_model.dart';
 

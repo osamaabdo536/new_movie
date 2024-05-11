@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/api/api_constants.dart';
+import '../api/api_constants.dart';
 import '../details/popular_details.dart';
 import '../my_theme.dart';
 import 'cupit/movies_states.dart';

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie/model/PopularResponse.dart';
-
 import '../api/api_manager.dart';
 
 class CategoryDetails extends StatefulWidget {

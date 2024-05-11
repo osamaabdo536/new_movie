@@ -1,4 +1,5 @@
-import 'package:movie/model/MoviesDetails.dart';
+
+import 'MoviesDetails.dart';
 
 class SimilarResponse {
   SimilarResponse({

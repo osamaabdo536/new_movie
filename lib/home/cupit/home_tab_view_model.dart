@@ -1,8 +1,6 @@
-
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/api/api_manager.dart';
-import 'package:movie/home/cupit/popular_movies_states.dart';
+import 'package:new_movie/home/cupit/popular_movies_states.dart';
+import '../../api/api_manager.dart';
 
 class HomeTabViewModel extends Cubit<PopularMoviesStates>{
   HomeTabViewModel():super(PopularMoviesLoadingState());

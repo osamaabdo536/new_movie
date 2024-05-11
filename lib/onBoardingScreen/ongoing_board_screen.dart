@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:movie/home_screen.dart';
-import 'package:movie/my_theme.dart';
-import 'package:movie/onBoardingScreen/on_boarding_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../home_screen.dart';
+import '../my_theme.dart';
+import 'on_boarding_page.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   static const String routeName = 'ongoing';

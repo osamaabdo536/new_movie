@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/api/api_manager.dart';
+import '../../api/api_manager.dart';
 import 'movies_states.dart';
 
 class MoviesViewModel extends Cubit<MoviesStates>{

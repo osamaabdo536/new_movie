@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie/api/api_manager.dart';
-
+import '../api/api_manager.dart';
 import '../details/popular_details.dart';
 import '../model/PopularResponse.dart';
 import '../model/categoryDM.dart';

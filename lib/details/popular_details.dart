@@ -2,13 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie/addToWatchlistButton.dart';
-import 'package:movie/details/cubit/popular_details_states.dart';
-import 'package:movie/details/cubit/popular_details_view_model.dart';
-import 'package:movie/my_theme.dart';
 import 'package:readmore/readmore.dart';
 import '../api/api_constants.dart';
 import '../model/MoviesDetails.dart';
+import '../my_theme.dart';
+import 'cubit/popular_details_states.dart';
+import 'cubit/popular_details_view_model.dart';
 
 class PopularDetailsScreen extends StatefulWidget {
   static const String routeName = 'Details';

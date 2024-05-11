@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:movie/model/TopRatedResponse.dart';
-import 'package:movie/model/UpComingResponse.dart';
-
 import '../model/PopularResponse.dart';
 import '../model/SimilarResponse.dart';
+import '../model/TopRatedResponse.dart';
+import '../model/UpComingResponse.dart';
 import 'api_constants.dart';
 
 class APIManager {

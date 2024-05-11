@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie/api/api_constants.dart';
 import '../../../my_theme.dart';
+import '../../api/api_constants.dart';
 import '../../model/MoviesDetails.dart';
 
 class ItemMovies extends StatelessWidget {
