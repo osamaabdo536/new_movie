@@ -23,7 +23,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
         backgroundColor: MyTheme.blackColor,
         centerTitle: true,
         title: Text(
-          'Movies',
+          category.title,
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w400,
@@ -39,7 +39,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   child: CircularProgressIndicator(
                 color: MyTheme.whiteColor,
               ));
-            } else if (snapshot.hasError) {
+            }
+            else if (snapshot.hasError) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -70,7 +71,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   Text(snapshot.data?.statusMessage ?? ''),
                   ElevatedButton(
                       onPressed: () {
-                        APIManager.getMoviesByGenreId("28");
+                        APIManager.getMoviesByGenreId(category.id.toString());
                       },
                       child: const Text("Try Again")),
                 ],

@@ -10,8 +10,6 @@ import 'my_theme.dart';
 import 'onBoardingScreen/ongoing_board_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   runApp(ScreenUtilInit(
       designSize: const Size(412, 870),
       minTextAdapt: true,
