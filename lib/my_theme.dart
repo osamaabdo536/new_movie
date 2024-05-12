@@ -31,5 +31,10 @@ class MyTheme {
         color: whiteColor,
       ),
     ),
+    appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+          color: yellowColor
+      ),
+    ),
   );
 }

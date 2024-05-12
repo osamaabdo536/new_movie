@@ -27,6 +27,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w400,
+            color: MyTheme.yellowColor,
           ),
         ),
       ),

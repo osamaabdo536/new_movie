@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../my_theme.dart';
 import '../search/search_tab.dart';
-import 'browse/category_click.dart';
 import 'browse/category_fragment.dart';
 import 'home/home_tab.dart';
 

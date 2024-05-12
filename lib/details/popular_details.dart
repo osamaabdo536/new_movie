@@ -55,15 +55,6 @@ class _PopularDetailsScreenState extends State<PopularDetailsScreen> {
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.2,
                   ),
-                  Center(
-                    child: ImageIcon(
-                      const AssetImage(
-                        'assets/images/play_button.png',
-                      ),
-                      color: MyTheme.whiteColor,
-                      size: 100,
-                    ),
-                  ),
                 ],
               ),
             ),

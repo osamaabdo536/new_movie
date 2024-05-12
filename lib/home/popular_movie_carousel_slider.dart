@@ -53,13 +53,6 @@ class _PopularMoviesCarouselSliderState extends State<PopularMoviesCarouselSlide
                         ),
                         Stack(
                           children: [
-                            Center(
-                              child: ImageIcon(
-                                const AssetImage('assets/images/play_button.png',),
-                                color: MyTheme.whiteColor,
-                                size: 100,
-                              ),
-                            ),
                             Positioned(
                               bottom: -0.h,
                               right: 140.h,

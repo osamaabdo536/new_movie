@@ -69,3 +69,7 @@ class CategoryFragment extends StatelessWidget {
     );
   }
 }
+CategoryDM? selectedCategory;
+void onCategoryClick(CategoryDM newSelectedCategory){
+  selectedCategory = newSelectedCategory;
+}
