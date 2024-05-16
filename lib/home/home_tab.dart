@@ -6,6 +6,7 @@ import 'package:new_movie/home/up_coming_list.dart';
 import '../my_theme.dart';
 
 class HomeTab extends StatefulWidget {
+  static const String routeName = 'homeTab';
   @override
   State<HomeTab> createState() => _HomeTabState();
 }

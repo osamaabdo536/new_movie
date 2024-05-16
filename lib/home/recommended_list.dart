@@ -144,6 +144,4 @@ class _RecommendedListState extends State<RecommendedList> {
       },
     );
   }
-
-  addMovie() {}
 }

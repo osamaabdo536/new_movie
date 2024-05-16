@@ -1,14 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:readmore/readmore.dart';
 import '../api/api_constants.dart';
 import '../model/MoviesDetails.dart';
 import '../my_theme.dart';
-import 'cubit/popular_details_states.dart';
-import 'cubit/popular_details_view_model.dart';
-
 class PopularDetailsScreen extends StatefulWidget {
   static const String routeName = 'Details';
 
@@ -17,7 +13,6 @@ class PopularDetailsScreen extends StatefulWidget {
 }
 
 class _PopularDetailsScreenState extends State<PopularDetailsScreen> {
-  PopularDetailsViewModel viewModel = PopularDetailsViewModel();
 
   ///MoviesDetails? popular;
 
@@ -145,127 +140,6 @@ class _PopularDetailsScreenState extends State<PopularDetailsScreen> {
                   ),
                 ],
               ),
-            ),
-            BlocBuilder<PopularDetailsViewModel, PopularDetailsStates>(
-              bloc: viewModel..getSimilarMovies(args.id!),
-              builder: (context, state) {
-                if (state is PopularDetailsLoadingState) {
-                  const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blue,
-                    ),
-                  );
-                } else if (state is PopularDetailsSuccessState) {
-                  return Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("More like this",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(color: MyTheme.whiteColor)),
-                        ],
-                      ),
-                      Container(
-                        color: MyTheme.darkGry,
-                        height: 300,
-                        width: double.infinity,
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: state.moviesList.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Container(
-                                  height: 200,
-                                  width: 120,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      Stack(
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              Navigator.of(context).pushNamed(
-                                                  PopularDetailsScreen
-                                                      .routeName,
-                                                  arguments:
-                                                      state.moviesList[index]);
-                                            },
-                                            child: Hero(
-                                              tag: 'img-${state.moviesList[index].id}',
-                                              child: Image.network(
-                                                "${APIConstants.imageUrl}${state.moviesList[index].posterPath}",
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.star,
-                                            color: MyTheme.yellowColor,
-                                            size: 24.sp,
-                                          ),
-                                          SizedBox(
-                                            width: 5.h,
-                                          ),
-                                          Text(
-                                            "${double.parse(state.moviesList[index].voteAverage!.toString())}",
-                                            style: TextStyle(
-                                                color: MyTheme.whiteColor),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(
-                                        state.moviesList[index].title!,
-                                        style: TextStyle(
-                                            color: MyTheme.whiteColor,
-                                            fontSize: 16),
-                                        maxLines: 1,
-                                      ),
-                                      Text(
-                                        state.moviesList[index].releaseDate!,
-                                        style: TextStyle(
-                                            color: MyTheme.whiteColor),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }),
-                      ),
-                    ],
-                  );
-                } else if (state is PopularDetailsErrorState) {
-                  return Center(
-                    child: Column(
-                      children: [
-                        Text(
-                          state.errorMessage!,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              viewModel.getSimilarMovies(args.id!);
-                              setState(() {});
-                            },
-                            child: Text(
-                              'Try again!!',
-                              style: Theme.of(context).textTheme.titleSmall,
-                            )),
-                      ],
-                    ),
-                  );
-                }
-                return Container();
-              },
             ),
           ],
         ),

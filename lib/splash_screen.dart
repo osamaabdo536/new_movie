@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
-import 'onBoardingScreen/ongoing_board_screen.dart';
+import 'package:new_movie/home/home_tab.dart';
 class SplashScreen extends StatelessWidget{
   static const String routeName = 'SplashScreen';
 
@@ -9,7 +8,7 @@ class SplashScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacementNamed(OnBoardingScreen.routeName);
+      Navigator.of(context).pushReplacementNamed(HomeTab.routeName);
     });
     return Scaffold(
       body: Image.asset(

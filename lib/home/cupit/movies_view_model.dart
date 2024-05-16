@@ -5,6 +5,8 @@ import 'movies_states.dart';
 class MoviesViewModel extends Cubit<MoviesStates>{
   MoviesViewModel():super(MoviesLoadingState());
 
+  ///handle logic & data
+
   Future<void> getPopularMovies() async {
     emit(MoviesLoadingState());
     try{

@@ -30,7 +30,6 @@ class _PopularMoviesCarouselSliderState extends State<PopularMoviesCarouselSlide
   Widget build(BuildContext context) {
     return Stack(
       children: [
-
         BlocBuilder<MoviesViewModel, MoviesStates>(
           bloc: viewModel,
           builder: (context, state) {
@@ -42,7 +41,6 @@ class _PopularMoviesCarouselSliderState extends State<PopularMoviesCarouselSlide
                   return InkWell(
                     onTap: () {Navigator.of(context).pushNamed(PopularDetailsScreen.routeName,
                         arguments:state.moviesList[index]
-
                     );},
                     child: Stack(
                       children: [
